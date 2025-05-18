@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Loading Test</title>
+    <style>
+      .image-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        display: inline-block;
+      }
+      img {
+        max-width: 300px;
+        max-height: 300px;
+      }
+      .result {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .success {
+        color: green;
+      }
+      .failure {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Loading Test</h1>
+
+    <div class="image-container">
+      <h3>Test 1: Direct path</h3>
+      <img
+        id="img1"
+        src="http://localhost:5000/uploads/photo_681ca1dc0c2eb6792f905e15_1746706908278.png"
+        alt="Test Image 1"
+      />
+      <div id="result1" class="result"></div>
+    </div>
+
+    <div class="image-container">
+      <h3>Test 2: API prefix path</h3>
+      <img
+        id="img2"
+        src="http://localhost:5000/api/uploads/photo_681ca1dc0c2eb6792f905e15_1746706908278.png"
+        alt="Test Image 2"
+      />
+      <div id="result2" class="result"></div>
+    </div>
+
+    <div class="image-container">
+      <h3>Test 3: Relative path</h3>
+      <img
+        id="img3"
+        src="/uploads/photo_681ca1dc0c2eb6792f905e15_1746706908278.png"
+        alt="Test Image 3"
+      />
+      <div id="result3" class="result"></div>
+    </div>
+
+    <script>
+      function checkImage(imgElement, resultElement) {
+        imgElement.onload = function () {
+          resultElement.textContent = "SUCCESS: Image loaded correctly";
+          resultElement.className = "result success";
+        };
+
+        imgElement.onerror = function () {
+          resultElement.textContent = "FAILED: Image failed to load";
+          resultElement.className = "result failure";
+        };
+      }
+
+      // Check all images
+      checkImage(
+        document.getElementById("img1"),
+        document.getElementById("result1")
+      );
+      checkImage(
+        document.getElementById("img2"),
+        document.getElementById("result2")
+      );
+      checkImage(
+        document.getElementById("img3"),
+        document.getElementById("result3")
+      );
+    </script>
+  </body>
+</html>
