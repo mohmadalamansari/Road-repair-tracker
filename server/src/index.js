@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 const fileUpload = require("express-fileupload");
 
 // Load config
@@ -36,17 +37,16 @@ const {
 const app = express();
 
 // Create uploads directory if it doesn't exist
-const uploadsDir = process.env.FILE_UPLOAD_PATH || "./public/uploads";
+const uploadsDir = process.env.FILE_UPLOAD_PATH || path.join(os.tmpdir(), "uploads");
+
 try {
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
     console.log("Upload directory created:", uploadsDir);
-  } else {
-    console.log("Upload directory already exists:", uploadsDir);
   }
 } catch (err) {
   console.error("Failed to create upload directory:", err.message);
-  process.exit(1); // Exit process if critical
+  process.exit(1);
 }
 
 // Body parser
