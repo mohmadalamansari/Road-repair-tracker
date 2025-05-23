@@ -56,9 +56,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Enable CORS
-app.use(
-  cors()
-);
+const corsOptions = {
+  origin:"https://road-repair-tracker-nxh8.vercel.app", // Exact frontend domain
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
