@@ -50,8 +50,9 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>Email: info@civicpulse.org</li>
-              <li>Phone: (555) 123-4567</li>
-              <li>Address: 123 City Hall Plaza, Anytown, USA</li>
+              <li>Phone: 9528409106</li>
+              <li>Address: 14401, Phagwara, Punjab, India</li>
+
             </ul>
           </div>
         </div>
